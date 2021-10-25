@@ -249,7 +249,65 @@ for ($i = 0; $i >= $i; $i++) {
     }
 }
 
-// foreach пока нету , не могу понять как им два массива сравнить.
+# foreach
+$count = 0;
+
+$newArrStr = [];
+$newArrLow = [];
+$newArrUp = [];
+#раскладываю строки на массивы
+while(true){
+    if (isset($txt[$count])){
+        $newArrStr[] = $txt[$count];
+    }else{
+        $count = 0;
+        break;
+    }
+    $count++;
+}
+//echo '<pre>';
+//print_r($newArrStr);
+//echo '</pre>';
+
+while(true){
+    if (isset($str_low[$count])){
+        $newArrLow[] = $str_low[$count];
+    }else{
+        $count = 0;
+        break;
+    }
+    $count++;
+}
+//echo '<pre>';
+//print_r($newArrLow);
+//echo '</pre>';
+
+while(true){
+    if (isset($str_up[$count])){
+        $newArrUp[] = $str_up[$count];
+    }else{
+        $count = 0;
+        break;
+    }
+    $count++;
+}
+//echo '<pre>';
+//print_r($newArrUp);
+//echo '</pre>';
+foreach ($newArrStr as $value){
+    foreach ($newArrLow as $k => $v){
+        if ($v == $value){
+            continue;
+        }else{
+            foreach ($newArrUp as $key => $item){
+                if ($item == $value){
+                    $value = $newArrLow[$key];
+                }
+            }
+        }
+    }
+    echo $value . '<br>';
+}
 
 //5. Дана строка
 //let str = 'Hi I am ALex'
@@ -312,7 +370,66 @@ for ($i = 0; $i >= $count; $i++) {
     $count++;
 }
 
-//foreach  здесь такая же беда .
+# foreach
+$count = 0;
+
+$newArrStr = [];
+$newArrLow = [];
+$newArrUp = [];
+#раскладываю строки на массивы
+while(true){
+    if (isset($txt[$count])){
+        $newArrStr[] = $txt[$count];
+    }else{
+        $count = 0;
+        break;
+    }
+    $count++;
+}
+//echo '<pre>';
+//print_r($newArrStr);
+//echo '</pre>';
+
+while(true){
+    if (isset($str_low[$count])){
+        $newArrLow[] = $str_low[$count];
+    }else{
+        $count = 0;
+        break;
+    }
+    $count++;
+}
+//echo '<pre>';
+//print_r($newArrLow);
+//echo '</pre>';
+
+while(true){
+    if (isset($str_up[$count])){
+        $newArrUp[] = $str_up[$count];
+    }else{
+        $count = 0;
+        break;
+    }
+    $count++;
+}
+//echo '<pre>';
+//print_r($newArrUp);
+//echo '</pre>';
+foreach ($newArrStr as $value){
+    foreach ($newArrUp as $k => $v){
+        if ($v == $value){
+            continue;
+        }else{
+            foreach ($newArrLow as $key => $item){
+                if ($item == $value){
+                    $value = $newArrUp[$key];
+                }
+            }
+        }
+    }
+    echo $value . '<br>';
+}
+
 
 //6. Дана строка
 //let str = 'Hi I am VaLerIi'
@@ -386,56 +503,55 @@ $str_low = ' abcdefghijklmnopqrstuvwxyz';
 $str_up = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 #while
-$count = 0;
-$str_arr = '';
+$count = 0 ;
+$newStr = '';
 $empty = ' ';
-while (true) {
-    if ($arr[$count] == '') {
+#здесь я массив разбиваю на строку
+while (true){
+    if (!isset($arr[$count])){
+        $count = 0;
         break;
     }
-    $str_arr .= $arr[$count];
-    $str_arr .= $empty;
+    $newStr .= $arr[$count];
+    $newStr .= $empty;
     $count++;
 }
-//var_dump($str_arr);
-$y = 0;
+//var_dump($newStr);
+#здесь я уже преобразованную строку проверяю на регистр и сравниваю со строкой символов.
+$x = 0;
 while (true) {
-    if ($str_arr[$y] == '') {
+    if ($newStr[$count] == '') {
+        $count = 0;
         break;
     }
     while (true) {
         if ($str_up[$x] == '') {
             $x = 0;
             break;
-        } elseif ($str_arr[$y] == $str_low[$x] or $str_arr[$y] == $str_up[$x]) {
-            $str_arr[$y] = $str_low[$x];
+        } elseif ($newStr[$count] == $str_up[$x] or $newStr[$count] == $str_low[$x]) {
+            $newStr[$count] = $str_low[$x];
         }
         $x++;
     }
-    $y++;
+    $count++;
 }
-$newArr = explode(' ', $str_arr);
-print_r($newArr);
+//var_dump($newStr);
+#а здесь я уже готовую строку уменьшенную\увеличенную преобразовую в исходный массив
+$newArr = [];
+$x = 0;
+while (true){
+    if ($newStr[$count] == ''){
+        $count = 0;
+        break;
+    }elseif ($newStr[$count] == ' '){
+        $x++;
+    }
 
-# А здесь я пытался что то сделать со строкой
-# обратно в тот же массив дефолтный но без результатно как я понял
-# 3 часа я долбался с этой задачей , и видимо я рано сдался и поддался на искушение explode`a =)
-# Ну или же еще не хватает знаний
-//var_dump($str_arr);
-//$q = 0;
-//$z = 0;
-//while (true){
-//    if ($str_arr[$q] == ''){
-//        break;
-//    }
-//    if ($str_arr[$q] !== '.'){
-//       $new_arr[] = $str_arr[$q];
-//    }
-//    $q++;
-//}
-//echo '<pre>';
-//print_r($new_arr);
-//echo '</pre>';
+    $newArr[$x] .= $newStr[$count];
+    $count++;
+}
+
+print_r($newArr);
 
 
 #do_while
@@ -840,3 +956,111 @@ foreach ($arrReverse as $value){
 
 $newNum =  (int)$newStr; #а здесь уже привожу строку к числу.
 var_dump($newNum);
+
+
+//10. Дан массив отсортируй его в порядке убывания
+$arr = [44, 12, 11, 7, 1, 99, 43, 5, 69];
+
+#while
+$countArrAllItems = 1;
+$a = 0;
+$i = 0;
+
+#получаю количество элеменов массива.
+while (true) {
+    if ($arr[$countArrAllItems] == ''){
+        break;
+    }
+    $countArrAllItems++;
+}
+
+while ($a < $countArrAllItems) {
+    while ($i < $countArrAllItems - 1) {
+        $elemet1 = $arr[$i];
+        $elemet2 = $arr[$i + 1];
+        if ($elemet1 > $elemet2) {
+            $arr[$i] = $elemet2;
+            $arr[$i + 1] = $elemet1;
+        }
+        $i++;
+    }
+    if ($i == $countArrAllItems - 1)
+        $i = 0;
+    $a++;
+}
+print_r($arr);
+
+
+#do_while
+$countArrAllItems = 1;
+$a = 0;
+$i = 0;
+
+do{
+    if ($arr[$countArrAllItems] == ''){
+        break;
+    }
+    $countArrAllItems++;
+}while(true);
+
+
+do{
+    if ($i == $countArrAllItems - 1){
+        $i = 0;
+    }
+    do{
+
+        $elemet1 = $arr[$i];
+        $elemet2 = $arr[$i + 1];
+        if ($elemet1 > $elemet2) {
+            $arr[$i] = $elemet2;
+            $arr[$i + 1] = $elemet1;
+        }
+        $i++;
+    }while($i < $countArrAllItems - 1);
+    $a++;
+}while($a < $countArrAllItems);
+
+print_r($arr);
+
+#for
+$countArrAllItems = 0;
+
+for ($i = 0; $i >= 0 ; $i++ ){
+    if ($arr[$i] == ''){
+        break;
+    }
+    $countArrAllItems++;
+}
+
+for ($q = 0 ; $q < $countArrAllItems ; $q++){
+    for ($p = 0; $p < $countArrAllItems - 1 ; $p++){
+        $elemet1 = $arr[$p];
+        $elemet2 = $arr[$p + 1];
+        if ($elemet1 > $elemet2) {
+            $arr[$p] = $elemet2;
+            $arr[$p + 1] = $elemet1;
+        }
+    }
+}
+
+print_r($arr);
+
+#foreach
+
+$countArrAllItems = 0;
+foreach ($arr as $v){
+    $countArrAllItems++;
+}
+
+foreach ($arr as $key => $item){
+    for ($p = 0; $p < $countArrAllItems - 1 ; $p++){
+        $elemet1 = $arr[$p];
+        $elemet2 = $arr[$p + 1];
+        if ($elemet1 > $elemet2) {
+            $arr[$p] = $elemet2;
+            $arr[$p + 1] = $elemet1;
+        }
+    }
+}
+var_dump($arr);
