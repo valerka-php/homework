@@ -483,3 +483,29 @@ function findSecondBiggestNum($arr)
     }
     return $second;
 }
+
+Создайте функцию, которая принимает слово на английском языке и проверяет, во множественном ли числе находится слово. Проверяйте самый простой вариант.
+//Примеры:
+//false  == solution("fork")
+//true  == solution("forks")
+//false  == solution("clojure")
+//true  == solution("bytes")
+//false  == solution("test")
+
+
+function checkStrSoulution ($str){
+    if (strpos($str,'s')){
+        return true;
+    }
+}
+$str = "forks";
+echo checkStrSoulution($str);
+
+
+$checkStrSolution = function ($str){
+    if (strpos($str,'s')){
+        return true;
+    }
+};
+
+echo $checkStrSolution($str);
