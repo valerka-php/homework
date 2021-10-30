@@ -1,12 +1,11 @@
 <?php
-
-
-Создайте функцию, которая подсчитывает количество директорий в массиве .
-Примеры:
-1 == solution(["C:/Projects/something.txt", "file.exe"])
-0 == solution(["brain-games.exe", "gendiff.sh", "task-manager.rb"])
-3 == solution(["C:/Users/JohnDoe/Music/Beethoven_5.mp3", "/usr/bin", "/var/www/myprojectt"])
-
+//
+//
+//Создайте функцию, которая подсчитывает количество директорий в массиве .
+//Примеры:
+//1 == solution(["C:/Projects/something.txt", "file.exe"])
+//0 == solution(["brain-games.exe", "gendiff.sh", "task-manager.rb"])
+//3 == solution(["C:/Users/JohnDoe/Music/Beethoven_5.mp3", "/usr/bin", "/var/www/myprojectt"])
 
 
 function countPath($arr)
@@ -19,6 +18,7 @@ function countPath($arr)
     }
     return $count;
 }
+
 $arr = ["C:/Users/JohnDoe/Music/Beethoven_5.mp3", "/usr/bin", "/var/www/myprojectt"];
 echo countPath($arr);
 
@@ -34,40 +34,51 @@ $countPath = function ($arr) {
 };
 echo $countPath($arr);
 
-Создайте функцию, которая принимает массив из трех элементов представляющих собой результат запуска слот - машины из казино . Проверьте, является ли комбинация элементов удачной(все элементы равны).
-Примеры:
-true == solution(["9919", "9919", "9919"])
-false == solution(["abc", "abc", "abb"])
-true == solution(["@", "@", "@"])
+//Создайте функцию, которая принимает массив из трех элементов представляющих собой результат запуска слот - машины из казино . Проверьте, является ли комбинация элементов удачной(все элементы равны).
+//Примеры:
+//true == solution(["9919", "9919", "9919"])
+//false == solution(["abc", "abc", "abb"])
+//true == solution(["@", "@", "@"])
 
 
-function checkElem($a, $b, $c)
+function checkElemSolution($arr)
 {
-    if ($a === $b && $b === $c) {
-        return true;
+    $check = true;
+    foreach ($arr as $value) {
+        if ($value === $arr[0]) {
+            continue;
+        } else {
+            return false;
+        }
     }
-
+    return $check;
 }
-echo checkElem('123', '123', '123');
+
+
+$arr = ["9919", "9919", "9919"];
+echo checkElemSolution($arr);
 
 
 $checkElem = function ($a, $b, $c) {
-    if ($a === $b && $b === $c) {
+    $check = true;
+    foreach ($arr as $value) {
+        if ($value === $arr[0]) {
+            continue;
+        } else {
+            return false;
+        }
     }
-    return true;
+    return $check;
 };
 
 echo $checkElem(1, 1, 1);
 
 
-
-
-
-Сэму и Фродо надо держаться вместе . Проверьте, нет ли между ними других персонажей .
-Примеры:
-true == solution(["Sam", "Frodo", "Troll", "Balrog", "Human"])
-false == solution(["Orc", "Frodo", "Treant", "Saruman", "Sam"])
-true == solution(["Orc", "Sam", "Frodo", "Gandalf", "Legolas"])
+//Сэму и Фродо надо держаться вместе . Проверьте, нет ли между ними других персонажей .
+//Примеры:
+//true == solution(["Sam", "Frodo", "Troll", "Balrog", "Human"])
+//false == solution(["Orc", "Frodo", "Treant", "Saruman", "Sam"])
+//true == solution(["Orc", "Sam", "Frodo", "Gandalf", "Legolas"])
 
 function checkSamAndFrodo($arr)
 {
@@ -77,7 +88,7 @@ function checkSamAndFrodo($arr)
             $elemet1 = $arr[$p];
             $elemet2 = $arr[$p + 1];
             if ($elemet1 === "Sam" && $elemet2 === "Frodo") {
-                return 'they are together';
+                return true;
             }
         }
     }
@@ -94,7 +105,7 @@ $checkSamAndFrodo = function ($arr) {
             $elemet1 = $arr[$p];
             $elemet2 = $arr[$p + 1];
             if ($elemet1 === "Sam" && $elemet2 === "Frodo") {
-                return 'they are together';
+                return true;
             }
         }
     }
@@ -103,23 +114,19 @@ $arr = ["Sam", "Frodo", "Troll", "Balrog", "Human"];
 echo $checkSamAndFrodo($arr);
 
 
-
-
-
-Найдите второе наибольшее число в массиве .
-Примеры:
-2 == solution([1, 2, 3])
-1 == solution([1, -2, 3])
-0 == solution([0, 0, 10])
-- 2  == solution([-1, -2, -3])
-
+//Найдите второе наибольшее число в массиве .
+//Примеры:
+//2 == solution([1, 2, 3])
+//1 == solution([1, -2, 3])
+//0 == solution([0, 0, 10])
+//- 2  == solution([-1, -2, -3])
 
 
 function findSecondBiggestNum($arr)
 {
     $first = $arr[0];
     foreach ($arr as $value) {
-        if ($$value > $first) {
+        if ($value > $first) {
             $first = $value;
         }
         $second = $arr[1];
@@ -129,20 +136,20 @@ function findSecondBiggestNum($arr)
         if ($value == $first) {
             continue;
         } elseif ($value > $arr[1])
-            $second = $arr[1];
+            $second = $value;
 
     }
     return $second;
 }
 
-$arr = [1, 2, 3];
+$arr = [1, -2, 3];
 echo findSecondBiggestNum($arr);
 
 
 $findSecondNum = function ($arr) {
     $first = $arr[0];
     foreach ($arr as $value) {
-        if ($$value > $first) {
+        if ($value > $first) {
             $first = $value;
         }
         $second = $arr[1];
@@ -152,7 +159,7 @@ $findSecondNum = function ($arr) {
         if ($value == $first) {
             continue;
         } elseif ($value > $arr[1])
-            $second = $arr[1];
+            $second = $value;
 
     }
     return $second;
@@ -162,15 +169,14 @@ $arr = [1, 2, 3];
 echo $findSecondNum($arr);
 
 
-
-Рассчитайте финальную оценку студента по пяти предметам . Если средняя оценка больше 90, то итоговая A . Если средняя оценка больше 80, то итоговая B . Если средняя оценка больше 70, то итоговая оценка C . Если средняя оценка больше 60, то итоговая оценка D . В остальных случаях итоговая оценка F .
-Примеры:
-"Grade: A" == solution([90, 91, 99, 93, 100])
-"Grade: B" == solution([92, 77, 85, 84, 84])
-"Grade: C" == solution([70, 72, 78, 72, 70])
-"Grade: D" == solution([60, 61, 62, 63, 70])
-"Grade: F" == solution([50, 42, 20, 31, 0])
-"Grade: F" == solution([10, 9, 2, 3, 5])
+//Рассчитайте финальную оценку студента по пяти предметам . Если средняя оценка больше 90, то итоговая A . Если средняя оценка больше 80, то итоговая B . Если средняя оценка больше 70, то итоговая оценка C . Если средняя оценка больше 60, то итоговая оценка D . В остальных случаях итоговая оценка F .
+//Примеры:
+//"Grade: A" == solution([90, 91, 99, 93, 100])
+//"Grade: B" == solution([92, 77, 85, 84, 84])
+//"Grade: C" == solution([70, 72, 78, 72, 70])
+//"Grade: D" == solution([60, 61, 62, 63, 70])
+//"Grade: F" == solution([50, 42, 20, 31, 0])
+//"Grade: F" == solution([10, 9, 2, 3, 5])
 
 function calcValue($arr)
 {
@@ -194,6 +200,7 @@ function calcValue($arr)
     }
 
 }
+
 $arr = [60, 61, 62, 63, 70];
 //calcValue($arr);
 
@@ -224,18 +231,18 @@ $calcValue = function ($arr) {
 echo $calcValue($arr);
 
 
-Создайте функцию которая принимает целое число и возвращает строку с названием фигуры, состоящий из переданного количество сторон .
-Примеры:
-"circle" == solution(1)
-"semi-circle" == solution(2)
-"triangle" == solution(3)
-"square" == solution(4)
-"pentagon" == solution(5)
-"hexagon" == solution(6)
-"heptagon" == solution(7)
-"octagon" == solution(8)
-"nonagon" == solution(9)
-"decagon" == solution(10)
+//Создайте функцию которая принимает целое число и возвращает строку с названием фигуры, состоящий из переданного количество сторон .
+//Примеры:
+//"circle" == solution(1)
+//"semi-circle" == solution(2)
+//"triangle" == solution(3)
+//"square" == solution(4)
+//"pentagon" == solution(5)
+//"hexagon" == solution(6)
+//"heptagon" == solution(7)
+//"octagon" == solution(8)
+//"nonagon" == solution(9)
+//"decagon" == solution(10)
 
 function findFigure($sides)
 {
@@ -276,6 +283,7 @@ function findFigure($sides)
     }
 
 }
+
 findFigure(8);
 
 
@@ -320,11 +328,11 @@ $findSides = function ($sides) {
 echo $findSides(5);
 
 
-Создайте функцию, которая трансформирует массив слов в массив длин этих слов .
-Примеры:
-[5, 5] == solution(["hello", "world"])
-[4,4,4,7]  == solution(["some", "test", "data", "strings"])
-[7] == solution(["clojure"])
+//Создайте функцию, которая трансформирует массив слов в массив длин этих слов .
+//Примеры:
+//[5, 5] == solution(["hello", "world"])
+//[4,4,4,7]  == solution(["some", "test", "data", "strings"])
+//[7] == solution(["clojure"])
 
 
 function findCountStr($arr)
@@ -338,6 +346,7 @@ function findCountStr($arr)
 
     return $result;
 }
+
 $arr = ["some", "test", "data", "strings"];
 print_r(findCountStr($arr));
 
@@ -357,12 +366,11 @@ $arr = ["clojure"];
 print_r($findCountStr($arr));
 
 
-
-Дан массив строк, создайте функцию, которая создает новый массив, содержащий строки, длины которых соответствуют наидлиннейшей строке .
-Примеры:
-["programms"] == solution(["in", "Soviet", "Russia", "frontend", "programms", "you"])
-["clojure","greater"]  == solution(["using", "clojure", "makes", "your", "life", "greater"])
-["a","b","c","d"]  == solution(["a", "b", "c", "d"])
+//Дан массив строк, создайте функцию, которая создает новый массив, содержащий строки, длины которых соответствуют наидлиннейшей строке .
+//Примеры:
+//["programms"] == solution(["in", "Soviet", "Russia", "frontend", "programms", "you"])
+//["clojure","greater"]  == solution(["using", "clojure", "makes", "your", "life", "greater"])
+//["a","b","c","d"]  == solution(["a", "b", "c", "d"])
 
 function findStr($arr)
 {
@@ -394,6 +402,7 @@ function findStr($arr)
 
 
 }
+
 $arr = ["using", "clojure", "makes", "your", "life", "greater"];
 echo findStr($arr);
 
@@ -430,13 +439,12 @@ $arr = ["a", "b", "c", "d"];
 echo $findStr($arr);
 
 
-
-Фермер просит вас посчитать сколько ног у всех его животных . Фермер разводит три вида: курицы = 2 ноги коровы = 4 ноги свиньи = 4 ноги Фермер посчитал своих животных и говорит вам, сколько их каждого вида . Вы должны написать функцию, которая возвращает общее число ног всех животных .
-Примеры:
-
-36 == solution(2, 3, 5)
-22 == solution(1, 2, 3)
-50 == solution(5, 2, 8)
+//Фермер просит вас посчитать сколько ног у всех его животных . Фермер разводит три вида: курицы = 2 ноги коровы = 4 ноги свиньи = 4 ноги Фермер посчитал своих животных и говорит вам, сколько их каждого вида . Вы должны написать функцию, которая возвращает общее число ног всех животных .
+//Примеры:
+//
+//36 == solution(2, 3, 5)
+//22 == solution(1, 2, 3)
+//50 == solution(5, 2, 8)
 
 
 function calcAnimalLegs($chicken, $cow, $pig)
@@ -454,3 +462,24 @@ $calcAnimalLegs = function ($chicken, $cow, $pig) {
 };
 
 echo $calcAnimalLegs(1, 2, 3);
+
+
+function findSecondBiggestNum($arr)
+{
+    $first = $arr[0];
+    foreach ($arr as $value) {
+        if ($$value > $first) {
+            $first = $value;
+        }
+        $second = $arr[1];
+
+    }
+    foreach ($arr as $value) {
+        if ($value == $first) {
+            continue;
+        } elseif ($value > $arr[1])
+            $second = $arr[1];
+
+    }
+    return $second;
+}
