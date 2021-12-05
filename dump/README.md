@@ -336,7 +336,7 @@ mysql> select title,genre from films right join genre ON (genre.id_genre = films
 
 ___
 
-# Famyli tree
+# Family tree
 
 ```
 mysql> select * from peoples;
